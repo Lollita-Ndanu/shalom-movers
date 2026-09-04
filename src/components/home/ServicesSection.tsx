@@ -19,7 +19,7 @@ const SERVICES = [
     title: "Home Relocation",
     icon: Home,
     desc: "Full-service residential moves across Kenya.",
-    media: "/images/VID_20251220_120113.mp4",
+    media: "https://shalom-movers-media.s3.eu-north-1.amazonaws.com/videos/VID_20251220_120113.mp4",
     isVideo: true,
   },
   {

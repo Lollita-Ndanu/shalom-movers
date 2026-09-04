@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const VIDEO_SOURCES = [
-  "/images/bg2.mp4",
-  "/images/bg3.mp4",
-  "/images/Bg1.mp4",
+  "https://shalom-movers-media.s3.eu-north-1.amazonaws.com/videos/bg2.mp4",
+  "https://shalom-movers-media.s3.eu-north-1.amazonaws.com/videos/bg3.mp4",
+  "https://shalom-movers-media.s3.eu-north-1.amazonaws.com/videos/Bg1.mp4",
 ];
 
 export default function Hero() {
