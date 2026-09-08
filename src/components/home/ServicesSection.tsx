@@ -90,7 +90,20 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Cards — stack deal from center */}
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-[#8A5A33] border-[10px] sm:border-[14px] border-[#4E3318] p-4 sm:p-6"
+        >
+          <div
+            className="pointer-events-none absolute inset-0 z-0"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(90deg, rgba(78,51,24,0.16) 0px, rgba(78,51,24,0.16) 2px, transparent 2px, transparent 7px)",
+            }}
+          />
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.title}
@@ -109,7 +122,7 @@ export default function ServicesSection() {
                 mass: 1,
                 delay: 0,
               }}
-              className="group relative h-60 sm:h-72 rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-shadow duration-500"
+              className="group relative z-[1] aspect-square overflow-hidden cursor-pointer"
             >
               {/* Media background */}
               {service.isVideo ? (
@@ -138,7 +151,7 @@ export default function ServicesSection() {
               {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-end p-5">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-gold/20 text-gold backdrop-blur-sm">
+                  <div className="w-9 h-9 flex items-center justify-center bg-gold/20 text-gold backdrop-blur-sm">
                     <service.icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-semibold text-white">
@@ -151,7 +164,7 @@ export default function ServicesSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View More Button — slide up */}
         <motion.div
