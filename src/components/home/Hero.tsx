@@ -9,6 +9,8 @@ const VIDEO_SOURCES = [
   "https://shalom-movers-media.s3.eu-north-1.amazonaws.com/videos/Bg1.mp4",
 ];
 
+const VIDEO_ROTATION_MS = 9000;
+
 export default function Hero() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -18,15 +20,15 @@ export default function Hero() {
     const video = videoRefs.current[idx];
     if (!video) return;
 
-    const handleEnded = () => {
-      setCurrentIdx((prev) => (prev + 1) % VIDEO_SOURCES.length);
-    };
-
-    video.addEventListener("ended", handleEnded);
+    video.currentTime = 0;
     video.play().catch(() => {});
 
+    const timer = window.setTimeout(() => {
+      setCurrentIdx((prev) => (prev + 1) % VIDEO_SOURCES.length);
+    }, VIDEO_ROTATION_MS);
+
     return () => {
-      video.removeEventListener("ended", handleEnded);
+      window.clearTimeout(timer);
     };
   }, [currentIdx]);
 
@@ -39,11 +41,13 @@ export default function Hero() {
             videoRefs.current[i] = el;
           }}
           src={src}
+          autoPlay
+          loop
           muted
           playsInline
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            i === currentIdx ? "opacity-100 z-[1]" : "opacity-0 z-0"
+          className={`absolute inset-0 z-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            i === currentIdx ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}

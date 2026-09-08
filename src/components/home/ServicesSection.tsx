@@ -119,7 +119,8 @@ export default function ServicesSection() {
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  preload="auto"
+                  className="absolute inset-0 z-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               ) : (
                 <Image

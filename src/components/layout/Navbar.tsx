@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -11,16 +11,11 @@ import { NAV_LINKS } from "@/lib/constants";
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 20);
-      setIsHidden(currentScrollY > lastScrollY.current && currentScrollY > 300);
-      lastScrollY.current = currentScrollY;
+      setIsScrolled(window.scrollY > 20);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -34,21 +29,16 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${
-        isHidden ? "-translate-y-full" : "translate-y-0"
-      } ${
         isScrolled
-          ? "bg-white/30 backdrop-blur-lg shadow-md shadow-black/5"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5"
+          : "bg-white/80 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Logo isScrolled={isScrolled} />
+          <Logo />
 
-          <nav
-            className="hidden lg:flex items-center gap-1"
-            aria-label="Main navigation"
-          >
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -57,12 +47,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isActive
-                      ? isScrolled
-                        ? "text-jungle"
-                        : "text-gold"
-                      : isScrolled
-                        ? "text-gray-600 hover:text-jungle hover:bg-jungle/5"
-                        : "text-white/80 hover:text-white hover:bg-white/10"
+                      ? "text-jungle"
+                      : "text-gray-600 hover:text-jungle hover:bg-jungle/5"
                   }`}
                 >
                   {link.label}
@@ -85,17 +71,11 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className={`lg:hidden p-2 -mr-2 rounded-lg transition-colors ${
-              isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"
-            }`}
+            className="lg:hidden p-2 -mr-2 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Open menu"
             aria-expanded={isMobileMenuOpen}
           >
-            <Menu
-              className={`w-6 h-6 transition-colors duration-300 ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
-            />
+            <Menu className="w-6 h-6 text-gray-700" />
           </button>
         </div>
       </div>

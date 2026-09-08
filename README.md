@@ -1,6 +1,4 @@
-# shalom-movers
-
-A modern, professional moving and relocation company website designed to provide a seamless experience for individuals, families, and businesses seeking reliable moving services. The website showcases the company's commitment to safe, efficient, and stress-free relocations through a clean, user-friendly interface and responsive design.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
