@@ -20,7 +20,20 @@ const BENEFITS = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="min-h-full flex flex-col items-center justify-center bg-jungle-dark px-4 py-16">
+    <section className="relative overflow-hidden min-h-full flex flex-col items-center justify-center bg-jungle-dark px-4 py-16">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-14 sm:h-20 lg:h-24">
+        <svg
+          viewBox="0 0 1440 140"
+          preserveAspectRatio="none"
+          className="block h-full w-full"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,80 C240,20 480,140 720,80 C960,20 1200,140 1440,80 L1440,0 L0,0 Z"
+            className="fill-white"
+          />
+        </svg>
+      </div>
       <div className="max-w-7xl w-full">
         <div className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
